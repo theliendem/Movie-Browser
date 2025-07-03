@@ -9,7 +9,7 @@ const Navbar = () => {
 					<ul className="flex space-x-6">
 						<li>
 							<Link
-								href="/"
+								to="/"
 								className="text-lg text-white hover:text-blue-400 transition duration-300"
 							>
 								Home
@@ -17,7 +17,7 @@ const Navbar = () => {
 						</li>
 						<li>
 							<Link
-								href="/movies"
+								to="/movies"
 								className="text-lg text-white hover:text-blue-400 transition duration-300"
 							>
 								Movies
@@ -25,7 +25,7 @@ const Navbar = () => {
 						</li>
 						<li>
 							<Link
-								href="/tvshows"
+								to="/tvshows"
 								className="text-lg text-white hover:text-blue-400 transition duration-300"
 							>
 								TV Shows
