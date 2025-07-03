@@ -1,7 +1,35 @@
 import React from "react";
 
 const Footer = () => {
-	const isHomePage = window.location.pathname === "/";
+	const [isHomePage, setIsHomePage] = React.useState(window.location.pathname === "/");
+
+	React.useEffect(() => {
+		const handleLocationChange = () => {
+			setIsHomePage(window.location.pathname === "/");
+		};
+
+		window.addEventListener("popstate", handleLocationChange);
+		
+		// Also listen for navigation changes (for React Router)
+		const originalPushState = history.pushState;
+		const originalReplaceState = history.replaceState;
+		
+		history.pushState = function(...args) {
+			originalPushState.apply(history, args);
+			handleLocationChange();
+		};
+		
+		history.replaceState = function(...args) {
+			originalReplaceState.apply(history, args);
+			handleLocationChange();
+		};
+
+		return () => {
+			window.removeEventListener("popstate", handleLocationChange);
+			history.pushState = originalPushState;
+			history.replaceState = originalReplaceState;
+		};
+	}, []);
 
 	return (
 		<>
